@@ -8,12 +8,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var button: Button
+    private lateinit var button: ImageButton
     private lateinit var camereManager: CameraManager
     private lateinit var cameraId: String
     private lateinit var textView: TextView
@@ -29,6 +30,11 @@ class MainActivity : AppCompatActivity() {
             try {
                 camereManager.setTorchMode(cameraId,!flashlightState)
                 flashlightState = !flashlightState
+                if(!flashlightState){
+                    button.setImageResource(R.drawable.button_off)
+                }else{
+                    button.setImageResource(R.drawable.button_on)
+                }
             }catch (e: java.lang.Exception){
                 Log.i("ERROR", e.toString())
             }
